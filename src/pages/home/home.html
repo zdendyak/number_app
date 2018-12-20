@@ -1,17 +1,26 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Predict</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
+  <h2>Welcome to ML recognition app</h2>
   <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
+    You can <a (click)="goTo('train')">train</a> and use trained local model to recognize digits
+    or you can use <a>MobileNet</a> model to recognize object at the photo or image
   </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+
+  <ion-item text-center>
+    <button ion-button round outline (click)="goTo('local')" class="link-button">Use local model</button>
+  </ion-item>
+
+  <ion-item text-center>
+    <button ion-button round outline color="dark" (click)="goTo('mobilenet')" class="link-button">Use MobileNet model</button>
+  </ion-item>
+
+  <ion-thumbnail>
+    <img style="width: 100%; height: auto; min-width: 300px; margin-top: 20px;" src="../../assets/imgs/mnist_image.png" />
+  </ion-thumbnail>
+  
 </ion-content>

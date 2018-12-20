@@ -1,0 +1,29 @@
+page-train {
+    canvas {
+        display: block;
+        border: 1px solid rgb(187, 178, 178);
+        margin: 5px auto;
+        transition: all 0.5s ease-in-out;
+    } 
+
+    .flex-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        padding: 16px;
+    }
+
+    .action-button {
+        flex-grow: 1; 
+        flex-basis: 200px;  
+        max-width: 320px;     
+    }
+
+    .bottom-button {
+        display: flex;
+        // flex-direction: row-reverse;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-right: 2.5%;
+    }
+}

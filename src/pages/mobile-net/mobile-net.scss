@@ -1,0 +1,38 @@
+page-mobile-net {
+
+  canvas {
+    display: block;
+    border: 1px solid rgb(187, 178, 178);
+    margin: 5px auto;
+  } 
+
+  .flex-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 16px;
+  }
+
+  ion-spinner * {
+    position: absolute;
+    width: 36px;
+    height: auto;
+    stroke: #444;
+    fill: #222;
+  }
+
+  .list-items {
+    margin-top: 16px;
+  }
+
+  .item-name {
+    flex-shrink: 1;
+    max-width: calc(100% - 70px);
+    text-overflow: ellipsis;
+  }
+  .item-pred {
+    flex-shrink: 0;
+    min-width: 40px;
+  }
+
+}

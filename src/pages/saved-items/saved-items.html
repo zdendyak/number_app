@@ -1,0 +1,23 @@
+<!--
+  Generated template for the SavedItemsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Saved Items</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding no-bounce>
+    <ion-item>
+      <button ion-button outline round item-end color="dark" (click)="goTo('stats')">Show stats</button>
+    </ion-item>
+    <div class="image-container">
+      <display-canvas *ngFor="let image of getStoredImages()" [image]="image" (delete)="deleteImage(image)"></display-canvas>
+    </div>
+</ion-content>

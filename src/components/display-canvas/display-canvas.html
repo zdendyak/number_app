@@ -1,0 +1,6 @@
+<!-- Generated template for the DisplayCanvasComponent component -->
+<div class="canvas-wrapper">
+    <canvas #displayCanvas class="canvas" (click)="showActiveSheet()" >
+    </canvas>
+    <span *ngIf="showLabel" (click)="showLabel = false" class="label">{{image.label}}</span>
+</div>

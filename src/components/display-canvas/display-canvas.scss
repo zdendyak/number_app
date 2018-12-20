@@ -1,0 +1,22 @@
+display-canvas {
+    .canvas-wrapper {
+        padding: 4px;
+        position: relative;
+    }
+
+    .label {
+        display: inline-block;
+        position: absolute;
+        width: 28px;
+        height: 28px;
+        top: 4px;
+        left: 4px;
+        background-color: #fff;
+        opacity: 0.7;
+        text-align: center;
+        vertical-align: center;
+        font-size: 20px;
+        line-height: 1;
+        padding: 4px;
+    }
+}

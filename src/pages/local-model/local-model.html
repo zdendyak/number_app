@@ -1,0 +1,25 @@
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>{{ 'Recognize Digits' +  (dataService.modelName ? ' with ' + dataService.modelName : '') }}</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding no-bounce>
+      <div #fixedContainer ion-fixed>
+        <canvas 
+                #imageCanvas
+                (touchstart)="startDrawing($event)"
+                (touchmove)="moved($event)"
+        ></canvas>
+        <div class="button-wrapper">
+          <button ion-button round outline small (click)="recognize()" class="action-button">Recognize</button>
+          <button ion-button round outline small (click)="clearCanvas()" color="danger" class="action-button">Clear Canvas</button>
+        </div>
+      </div>
+      <canvas 
+              #resultCanvas
+      ></canvas>
+  </ion-content>

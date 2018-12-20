@@ -1,0 +1,28 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>MobileNet</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h2>Recognize your image with the MobileNet model</h2>
+  <div class="flex-container">
+    <canvas #imageCanvas></canvas>
+  </div>
+  <ion-row justify-content-around>
+    <button ion-button color="dark" outline round (click)="presentActionSheet()">Take a photo</button>
+    <button ion-button color="danger" outline round *ngIf="isImage && loader" (click)="predict()">Recognize</button>
+    <ion-spinner name="bubbles" *ngIf="!loader"></ion-spinner>
+  </ion-row>
+
+  <ion-list *ngIf="classes.length" class="list-items">
+    <ion-list-header>Predictions</ion-list-header>
+    <ion-item *ngFor="let item of classes" class="list-items__item">
+      <span item-start class="item-name"><strong>{{ item.className}}</strong></span>
+      <span item-end class="item-pred">{{item.probability.toFixed(3)}}</span>
+    </ion-item>
+  </ion-list>
+</ion-content>

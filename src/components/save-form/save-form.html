@@ -1,0 +1,18 @@
+<div>
+    <form>
+      <h2>Save options</h2>
+      <ion-item>
+        <ion-label>Save model in</ion-label>
+        <ion-select [(ngModel)]="type" name="type">
+          <ion-option *ngFor="let opt of typeOptions" value="opt.value">{{opt.label}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Model name</ion-label>
+        <ion-input type="text" (ngModel)="modelName" name="modelName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <button ion-button outline round (click)="save()">Save</button>
+      </ion-item>
+    </form>
+</div>

@@ -1,0 +1,67 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Train model</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding no-bounce>
+  <div #fixedContainer>
+    <ion-item>
+      <ion-label color="primary" stacked>Number of training epochs</ion-label>
+      <ion-input type="number" [(ngModel)]="epochs" min="1" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>Number of batch size</ion-label>
+      <ion-input type="number" [(ngModel)]="batchSize" min="1" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>Validation Split</ion-label>
+      <ion-input type="number" [(ngModel)]="validationSplit" min="0.01" required></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="primary" stacked>Learning rate</ion-label>
+        <ion-input type="number" [(ngModel)]="learningRate" min="0" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Optimizer</ion-label>
+      <ion-select [(ngModel)]="optimizer">
+        <ion-option value="adam">Adam</ion-option>
+        <ion-option value="sgd">SGD</ion-option>
+        <ion-option value="adamax">Adamax</ion-option>
+        <ion-option value="adagrad">Adagrad</ion-option>
+        <ion-option value="adadelta">Adadelta</ion-option>
+        <ion-option value="rmsprop">RMSProp</ion-option>
+        <!-- <ion-option value="momentum">Momentum</ion-option> -->
+      </ion-select>
+    </ion-item>
+    
+    
+    <div class="flex-container">
+      <canvas 
+              #imageCanvas
+      ></canvas>
+    </div>
+    
+    <div class="flex-container bottom-button">
+      <button ion-button round outline small (click)="train()" class="action-button">
+        Train
+      </button>
+      <button ion-button round outline small color="danger" (click)="trainMnist()" class="action-button">
+          Load and train on the MNIST Data
+      </button>
+      <button ion-button round outline small color="secondary" (click)="save()" class="action-button" *ngIf="trainCompleted">
+          Save model
+      </button>
+      <button ion-button round outline small color="dark" (click)="goTo('savedItems')" class="action-button">
+        Show saved items
+      </button>
+    </div>
+  </div>
+
+  
+  
+
+</ion-content>

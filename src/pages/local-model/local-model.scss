@@ -1,0 +1,27 @@
+page-local-model {
+    .flex-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        padding: 16px;
+    }
+
+    canvas {
+        margin-top: 16px;
+        margin-left: 16px;
+        max-width: 100%;
+    }
+
+    .button-wrapper {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .action-button {
+        // min-width: 45%;
+        flex-basis: 45%;
+    }
+
+
+}
