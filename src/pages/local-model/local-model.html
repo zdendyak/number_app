@@ -2,6 +2,11 @@
 
     <ion-navbar>
       <ion-title>{{ 'Recognize Digits' +  (dataService.modelName ? ' with ' + dataService.modelName : '') }}</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="openModal()">
+          <ion-icon name="more"></ion-icon>
+        </button>
+      </ion-buttons>
     </ion-navbar>
   
   </ion-header>
