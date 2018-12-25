@@ -8,8 +8,8 @@ import { MnistDataProvider } from '../../providers/mnist-data/mnist-data';
 @Injectable()
 export class ProcessDataProvider {
   model: any;
-  modelName: string = '';
-  savedModels: any[];
+  private modelName: string = '';
+  private savedModels: any[];
 
   constructor(
       private mnistService: MnistDataProvider,
@@ -28,6 +28,14 @@ export class ProcessDataProvider {
       console.log(key, JSON.parse(val));
       this[key] = JSON.parse(val) || []; 
     });
+  }
+
+  getSavedModels (type) {
+    return this.savedModels.filter(model => model.type === type);
+  }
+
+  getModelName () {
+    return this.modelName;
   }
 
   saveModelNames (key="savedModels") {

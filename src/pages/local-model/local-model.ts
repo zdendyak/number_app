@@ -1,9 +1,15 @@
 import { Component, ViewChild, Renderer } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, Content, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, Content, ToastController, AlertController } from 'ionic-angular';
 
 import { ProcessDataProvider } from '../../providers/process-data/process-data';
 import { ProcessImageProvider } from '../../providers/process-image/process-image';
 import Chart from 'chart.js';
+
+interface LoadOptions {
+  type: string,
+  modelName?: string,
+  url?: string 
+}
 
 @IonicPage()
 @Component({
@@ -24,11 +30,19 @@ export class LocalModelPage {
   saveY: number;
   touched: boolean = false;
 
+  loadOptions: LoadOptions = {
+    type: 'localStorage',
+    modelName: '',
+    url: '',
+  };
+
+
   selectedColor: string = '#fff';
   result = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private toastCtrl: ToastController,
+              private alertCtrl: AlertController,
               private imageService: ProcessImageProvider, public dataService: ProcessDataProvider,
               public renderer: Renderer, private plt: Platform) {
   }
@@ -59,6 +73,104 @@ export class LocalModelPage {
       position: 'bottom' 
     });
     toast.present();
+  }
+
+  openModal () {
+    this.presentTypeAlert();
+  }
+
+  presentTypeAlert () {
+    let alert = this.alertCtrl.create({
+      title: 'Load type',
+      inputs: [
+        {
+          type: 'radio',
+          label: 'Local Storage',
+          value: 'localStorage',
+          checked: true
+        },
+        {
+          type: 'radio',
+          label: 'Indexed DB',
+          value: 'indexedDb'
+        },
+        {
+          type: 'radio',
+          label: 'URL',
+          value: 'http'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: "Ok",
+          handler: (data: string) => {
+            this.loadOptions.type = data;
+            this.presentModelAlert(data); 
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  presentModelAlert (type: string) {
+    const savedModels = this.dataService.getSavedModels(type);
+    const currentModel = this.dataService.getModelName();
+    if (type !== 'http' && (!savedModels || !savedModels.length)) {
+      return this.presentToast('No saved model for selected type');
+    }
+
+    let alert = this.alertCtrl.create({
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: "Ok",
+          handler: (data: any) => {
+            if (type === 'http') {
+              this.loadOptions.url = data.url;
+            } else {
+              this.loadOptions.modelName = data;
+            }
+            this.dataService.loadModel(this.loadOptions)
+              .then(result => {
+                console.log('model loaded', result);
+                this.presentToast('Model loaded');
+              })
+              .catch(error => {
+                console.log('error during model loading', error);
+                this.presentToast('Loading failed');
+              });
+          }
+        }
+      ]
+    });
+
+    if (type === 'http') {
+      alert.setTitle('Model URL');
+      alert.addInput({
+        type: 'text',
+        label: 'Enter model URL',
+        name: 'url'
+      });
+    } else {
+      alert.setTitle('Model name');
+      for (let model of savedModels) {
+        alert.addInput({
+          type: 'radio',
+          label: model.modelName,
+          value: model.modelName,
+          checked: model.modelName === currentModel
+        });
+      }
+    }
+    alert.present();
   }
 
 
