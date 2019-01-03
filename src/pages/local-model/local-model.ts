@@ -48,9 +48,17 @@ export class LocalModelPage {
   }
 
   ionViewDidEnter() {
+    this.scrollbyFixed();
+  }
+
+  scrollbyFixed() {
+    // Get the heigth of the fixed item
     let itemHeight = this.fixedContainer.nativeElement.offsetHeight;
-    const scroll = this.content.getScrollElement();
-    itemHeight = Number.parseFloat(scroll.style.marginTop.replace("px", "")) + itemHeight;
+    let scroll = this.content.getScrollElement();
+
+    // Add preexisting scroll margin to fixed container size
+    const marginTop = Number.parseFloat(scroll.style.marginTop.replace("px", ""));
+    itemHeight = marginTop < itemHeight ? marginTop + itemHeight : marginTop;
     scroll.style.marginTop = itemHeight + 'px';
   }
 
@@ -81,7 +89,7 @@ export class LocalModelPage {
 
   presentTypeAlert () {
     let alert = this.alertCtrl.create({
-      title: 'Load type',
+      title: 'Load source',
       inputs: [
         {
           type: 'radio',
@@ -267,7 +275,9 @@ export class LocalModelPage {
     let ratio = Math.floor((minScreenSize - 16) / 28); 
     this.resultElement = this.resultCanvas.nativeElement;
     this.resultElement.width = ratio * 28 + '';
-    this.resultElement.height = 0.7 * ratio * 28 + '';
+
+    const heightRemain = Math.max(this.plt.height() - parseInt(this.fixedContainer.nativeElement.offsetHeight) - 130, 0.5 * ratio * 28);
+    this.resultElement.height = Math.min(0.7 * ratio * 28, heightRemain) + '';
     const marginLeft = (minScreenSize - ratio * 28) / 2;
     this.resultElement.style.marginLeft = `${marginLeft}px`;
     // draw the result bar chart

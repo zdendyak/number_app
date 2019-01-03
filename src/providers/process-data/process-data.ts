@@ -91,7 +91,7 @@ export class ProcessDataProvider {
     model.add(tf.layers.conv2d({
       inputShape: [28, 28, 1],
       kernelSize: 3,
-      filters: 16,
+      filters: 8,
       strides: 1,
       activation: conv_activation,
       kernelInitializer: 'VarianceScaling'
@@ -104,7 +104,7 @@ export class ProcessDataProvider {
 
     model.add(tf.layers.conv2d({
       kernelSize: 3,
-      filters: 32,
+      filters: 16,
       strides: 1,
       activation: conv_activation,
     }));

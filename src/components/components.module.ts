@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
-import { DisplayCanvasComponent } from './display-canvas/display-canvas';
-import { SaveFormComponent } from './save-form/save-form';
+
 @NgModule({
-	declarations: [DisplayCanvasComponent,
-    SaveFormComponent],
+	declarations: [],
 	imports: [],
-	exports: [DisplayCanvasComponent,
-    SaveFormComponent]
+	exports: []
 })
 export class ComponentsModule {}

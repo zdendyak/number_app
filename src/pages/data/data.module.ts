@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { DataPage } from './data';
+// import { DataPage } from './data';
 
 @NgModule({
   declarations: [
-    DataPage,
+    // DataPage,
   ],
   imports: [
-    IonicPageModule.forChild(DataPage),
+    // IonicPageModule.forChild(DataPage),
   ],
 })
 export class DataPageModule {}

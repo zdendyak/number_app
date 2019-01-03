@@ -6,10 +6,14 @@ page-local-model {
         padding: 16px;
     }
 
-    canvas {
+    .m_canvas {
         margin-top: 16px;
         margin-left: 16px;
         max-width: 100%;
+    }
+
+    .result-section {
+        margin: -16px 16px 0 -16px;
     }
 
     .button-wrapper {
@@ -23,5 +27,10 @@ page-local-model {
         flex-basis: 45%;
     }
 
+    .ma {
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+    }
 
 }

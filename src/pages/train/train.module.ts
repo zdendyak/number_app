@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { TrainPage } from './train';
+// import { TrainPage } from './train';
 
 @NgModule({
   declarations: [
-    TrainPage,
+    // TrainPage,
   ],
   imports: [
-    IonicPageModule.forChild(TrainPage),
+    // IonicPageModule.forChild(TrainPage),
   ],
 })
 export class TrainPageModule {}

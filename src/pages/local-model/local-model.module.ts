@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { LocalModelPage } from './local-model';
+// import { LocalModelPage } from './local-model';
 
 @NgModule({
   declarations: [
-    LocalModelPage,
+    // LocalModelPage,
   ],
   imports: [
-    IonicPageModule.forChild(LocalModelPage),
+    // IonicPageModule.forChild(LocalModelPage),
   ],
 })
 export class LocalModelPageModule {}
